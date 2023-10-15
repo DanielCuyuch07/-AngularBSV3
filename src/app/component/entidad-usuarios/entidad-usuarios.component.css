@@ -1,0 +1,38 @@
+  /* Estilo de hover suave para los botones */
+  .btn-link.text-white:hover {
+      color: #007BFF;
+      /* Cambia el color al hacer hover */
+      background-color: transparent;
+      /* Fondo transparente al hacer hover */
+      transition: color 0.3s, background-color 0.3s;
+      /* Transición suave */
+  }
+
+  .fixed-menu {
+      position: fixed;
+      /* Fija el menú en la posición deseada */
+      top: 0;
+      /* Coloca el menú en la parte superior de la pantalla */
+      left: 0;
+      /* Coloca el menú en la parte izquierda de la pantalla */
+      bottom: 0;
+      /* Hace que el menú se extienda hasta la parte inferior de la pantalla */
+      z-index: 1000;
+      /* Asegura que el menú esté por encima de otros elementos */
+      overflow-y: auto;
+      /* Agrega desplazamiento vertical si el contenido es largo */
+  }
+
+  .hero {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+  }
+
+  /* Estilo de hover para los elementos de la lista */
+  ul.list-unstyled li a:hover {
+      background-color: #555;
+      /* Cambia el color de fondo al pasar el cursor */
+      color: #fff;
+      /* Cambia el color del texto al pasar el cursor */
+  }

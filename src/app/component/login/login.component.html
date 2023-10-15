@@ -1,0 +1,73 @@
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <!-- Tu contenido aquí si es necesario -->
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center mt-5">
+            <div class="col-md-6 col-lg-4 mt-3">
+                <div class="login-wrap p-0">
+                    <h1 class="mb-4 text-center">LOGIN</h1>
+                    <form [formGroup]="loginForm" (submit)="login(FormLogin)" #FormLogin="ngForm">
+                        <div class="form-group">
+
+                            <label class="form-label" for="form2Example1">Email</label>
+                            <input [(ngModel)]="modelUser.username"
+                                [class.border-danger]="loginForm.controls.username.errors" formControlName="email"
+                                type="text" class="form-control" name="username" id="name" formControlName="username" />
+                            <div *ngIf="loginForm.controls.username.getError('required')"
+                                class="requisito  text-danger">
+                                - El campo es requerido
+                            </div>
+                            <!-- Mostrar un mensaje de error si el campo es inválido -->
+
+                            <div class="form-group mt-3" for="form2Example1">
+                                <label class="form-label">Contraseña</label>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input [type]="ocultarContrasenia ? 'password' : 'text'"
+                                            [(ngModel)]="modelUser.password"
+                                            [class.border-danger]="loginForm.controls.contrasenia.errors"
+                                            formControlName="contrasenia" class="form-control" type="password" />
+                                    </div>
+                                </div>
+
+                                <div *ngIf="loginForm.controls.contrasenia.getError('onlyNumbers')"
+                                    class="requisito text-danger">
+                                    - Sólo se permiten caracteres numéricos
+                                </div>
+                                <div *ngIf="loginForm.controls.contrasenia.getError('minlength') ||
+                    !loginForm.controls.contrasenia.value" class="requisito text-danger">
+                                    - Mínimo 8 caracteres
+                                </div>
+                                <div *ngIf="loginForm.controls.contrasenia.getError('required')"
+                                    class="requisito text-danger">
+                                    - El campo es requerido
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Otros campos de tu formulario -->
+
+                        <div class="form-group mt-5 text-center">
+                            <button [disabled]="!loginForm.valid" class="btn btn-primary text-decoration-none"
+                                routerLink="/main">
+                                <i class="bi bi-person-circle fs-5 fw-bold me-2"></i>Iniciar Sesión
+                            </button>
+
+
+                        </div>
+
+                    </form>
+
+                    <div class="social d-flex justify-content-center mt-4">
+                        <a href="#" class="px-2 py-2 mr-md-1 rounded text-decoration-none " routerLink="/register"><span
+                                class="ion-logo-facebook mr-2 "></span>
+                            <i class="bi bi-caret-right-fill"></i> Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
