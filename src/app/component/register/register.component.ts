@@ -24,9 +24,10 @@ export class RegisterComponent {
  * ****  Variables *********
  * 
 ******************************/
-  modUser: UserModel;
+modUser: UserModel;
 
-  /*---- Validacion de formularios -------*/
+
+/*---- Validacion de formularios -------*/
   validatorsForm = this.formBuilder.group({
     name: ['', Validators.required],
     username: ['', Validators.required],

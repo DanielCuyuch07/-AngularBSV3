@@ -1,5 +1,8 @@
+/*Dependencia de lado de angular */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+/*importaciones creadas */
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { EntidadMaestrosComponent } from './component/entidad-maestros/entidad-maestros.component';
@@ -10,6 +13,7 @@ import { EntidadUserArchivosComponent } from './component/entidad-user-archivos/
 import { SubmenuUserClientComponent } from './component/submenu-user-client/submenu-user-client.component';
 import { DocSemanalComponent } from './component/doc-semanal/doc-semanal.component';
 import { HomeComponent } from './component/home/home.component';
+import { CalificacionesComponent } from './component/calificaciones/calificaciones.component';
 
 const routes: Routes = [
 
@@ -20,6 +24,8 @@ const routes: Routes = [
   { path: 'maestros', component: EntidadMaestrosComponent },
   { path: 'subMenuClient', component: SubmenuUserClientComponent },
   { path: 'document', component: DocSemanalComponent },
+  { path: 'mejoresAlumnos', component: CalificacionesComponent },
+  { path: 'calificaciones', component: CalificacionesComponent },
   { path: 'usuarios', component: EntidadUsuariosComponent, }
 
 ];
