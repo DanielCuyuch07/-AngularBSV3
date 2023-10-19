@@ -16,14 +16,16 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <!-- Campo Nombre Completo -->
-                                            <label class="form-label" for="name">Nombre Completo</label>
-                                            <input [class.border-danger]="validatorsForm.controls.name.errors"
-                                                formControlName="name" type="text" id="name" name="name"
-                                                class="form-control" placeholder="Ingrese su nombre completo"
-                                                [(ngModel)]="modUser.name" />
-                                            <div *ngIf="validatorsForm.controls.name.getError('required')"
-                                                class="requisito  text-danger">
-                                                - El campo es requerido
+                                            <i class="bi bi-circle-fill me-2  ms-1  small-icon text-success "></i>
+                                            <label class="form-label fs-6" for="name"><b>Nombre Completo</b></label>
+                                            <input class="form-control" formControlName="name" type="text" id="name"
+                                                name="name" placeholder="Ingrese su nombre completo"
+                                                [class.border-danger]="validatorsForm.controls.name.errors"
+                                                [ngClass]="isValidField('name')" [(ngModel)]="modUser.name" required />
+                                            <div *ngIf="!validatorsForm.get('name')?.valid" class="invalid-feedback">
+                                                <div *ngIf="validatorsForm.get('name')?.hasError('required')">
+                                                    Campo requerido
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -32,38 +34,50 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example3c">Correo Email</label>
+                                            <i class="bi bi-circle-fill me-2  ms-1  small-icon text-success "></i>
+                                            <label class="form-label fs-6" for="form3Example3c"><b>Correo
+                                                    Email</b></label>
                                             <input class="form-control" type="email" id="form3Example3c"
                                                 placeholder="Ingrese su correo electronico ejemplo@gmail.com"
                                                 [(ngModel)]="modUser.email" name="email" formControlName="email"
-                                                [class.border-danger]="validatorsForm.controls.email.errors" required />
-                                            <div *ngIf="validatorsForm.controls.email.getError('required')"
-                                                class="requisito  text-danger">
-                                                - El campo es requerido
+                                                [class.border-danger]="validatorsForm.controls.email.errors"
+                                                [ngClass]="isValidField('email')" required />
+                                            <div *ngIf="!validatorsForm.get('email')?.valid" class="invalid-feedback">
+                                                <div *ngIf="validatorsForm.get('email')?.hasError('required')">
+                                                    Campo requerido</div>
+                                                <div *ngIf="validatorsForm.get('email')?.hasError('email')">
+                                                    Texto de formato email</div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <!-- Campo Username -->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example4cd">Username</label>
+                                            <i class="bi bi-circle-fill me-2  ms-1  small-icon text-success "></i>
+                                            <label class="form-label fs-6" for="form3Example4cd"><b>Username</b></label>
                                             <input class="form-control" type="text" id="form3Example4cd"
-                                                placeholder="Ingrese su usuario" [(ngModel)]="modUser.username"
-                                                name="username" formControlName="username"
+                                                placeholder="Ingrese su usuario" name="username"
+                                                formControlName="username" [(ngModel)]="modUser.username"
                                                 [class.border-danger]="validatorsForm.controls.username.errors"
-                                                required />
-                                            <div *ngIf="validatorsForm.controls.username.getError('required')"
-                                                class="requisito  text-danger">
-                                                - El campo es requerido
+                                                [ngClass]="isValidField('username')" required />
+                                            <div *ngIf="!validatorsForm.get('username')?.valid"
+                                                class="invalid-feedback">
+                                                <div *ngIf="validatorsForm.get('username')?.hasError('required')">
+                                                    Campo requerido
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <!-- Campo Contraseña -->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example4c">Contraseña</label>
+                                            <i class="bi bi-circle-fill me-2  ms-1  small-icon text-success "></i>
+                                            <label class="form-label fs-6"
+                                                for="form3Example4c"><b>Contraseña</b></label>
                                             <input class="form-control" type="password" id="name" type="password"
                                                 id="form3Example4c" formControlName="contrasenia"
                                                 placeholder="Ingrese su contraseña" [(ngModel)]="modUser.password"
@@ -100,8 +114,11 @@
                                 </form>
                             </div>
                             <!-- Aqui va el codigo eliminado  -->
+
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

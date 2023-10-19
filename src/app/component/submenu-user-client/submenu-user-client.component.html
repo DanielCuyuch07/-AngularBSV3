@@ -1,0 +1,36 @@
+<div class="fixed-menu bg-dark" style="width: 250px; height: 100vh; overflow-y: auto;">
+    <div class="text-white text-center mt-5">
+        <h5>
+            <span class="ms-3 h3">Synapse</span>
+        </h5>
+    </div>
+
+    <ul class="list-unstyled mt-5">
+        <li class="">
+            <a class="btn btn-link text-white text-decoration-none d-flex align-items-center"
+                [routerLink]="['/document']">
+                <i class="bi bi-file-earmark-plus fs-5 me-2 ms-4"></i>
+                <span class="fs-6" style="margin-left: 10px;">Exportador doc</span>
+                <!-- Ajuste del margen izquierdo -->
+            </a>
+        </li>
+
+        <li class="">
+            <a class="btn btn-link text-white text-decoration-none d-flex align-items-center"
+                [routerLink]="['/ViewComponentUsuario']">
+                <i class="bi bi-people-fill fs-5 me-2 ms-4"></i>
+                <span class="fs-6" style="margin-left: 10px;">Pendientes</span> <!-- Ajuste del margen izquierdo -->
+            </a>
+        </li>
+
+        <!-- Resto de tus elementos del menú -->
+
+        <li class="mt-5">
+            <a class="btn btn-link text-white  text-decoration-none d-flex align-items-center me-2"
+                [routerLink]="['/TuRutaAqui']">
+                <span class="fs-6 ms-5">
+                    Botón Adicional</span>
+            </a>
+        </li>
+    </ul>
+</div>

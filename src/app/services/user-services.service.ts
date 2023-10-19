@@ -30,6 +30,13 @@ export class UserServicesService {
     return this.http.get(environment.baseUrl + 'user/getUsuarios', { headers: this.httpOptions });
   }
 
+  deleteUser(id: string) {
+    return this.http.delete(environment.baseUrl + 'user/deleteUser/' + id, { headers: this.httpOptions });
+  }
+
+  updateUser(id: string, params: {}) {
+    return this.http.put(environment.baseUrl + 'user/updateUser/' + id, params, { headers: this.httpOptions })
+  }
 
 
 
@@ -50,9 +57,8 @@ export class UserServicesService {
     if (globalIdentity != undefined) {
       identity = JSON.parse(globalIdentity);
     } else {
-      identity = ''
+      identity = '';
     }
     return identity;
   }
-
 }

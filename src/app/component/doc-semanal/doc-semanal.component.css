@@ -1,0 +1,22 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo de hover suave para los botones */
+.btn-link.text-white:hover {
+    color: #007BFF;
+    /* Cambia el color al hacer hover */
+    background-color: transparent;
+    /* Fondo transparente al hacer hover */
+    transition: color 0.3s, background-color 0.3s;
+    /* Transición suave */
+}
+
+/* Estilo de hover para los elementos de la lista */
+ul.list-unstyled li a:hover {
+    background-color: #555;
+    /* Cambia el color de fondo al pasar el cursor */
+    color: #fff;
+    /* Cambia el color del texto al pasar el cursor */
+}

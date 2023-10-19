@@ -1,11 +1,13 @@
+/*Dependencia de lado de angular */
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroupDirective } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
+/*Dependencias creadas */
 import { UserModel } from 'src/app/models/user.model';
 import { UserServicesService } from 'src/app/services/user-services.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { FormGroupDirective } from '@angular/forms';
-
-import { Router } from '@angular/router';
 import { CustomValidators } from 'src/validators/CustomValidators';
 
 
@@ -14,13 +16,21 @@ import { CustomValidators } from 'src/validators/CustomValidators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+
 export class RegisterComponent {
+  /*****************************
+ * 
+ * ****  Variables *********
+ * 
+******************************/
   modUser: UserModel;
 
+  /*---- Validacion de formularios -------*/
   validatorsForm = this.formBuilder.group({
     name: ['', Validators.required],
     username: ['', Validators.required],
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     contrasenia: [
       '',
       [
@@ -31,21 +41,17 @@ export class RegisterComponent {
     ]
   });
 
+  isValidField(field: string): string {
+    const validateField = this.validatorsForm.get(field);
 
-  constructor
-    (private formBuilder: FormBuilder,
-      private userServices: UserServicesService,
-      private router: Router
-    ) {
-    this.modUser = new UserModel('', '', '', '', '');
+    return (!validateField?.valid && validateField?.touched)
+      ? 'is-invalid' : validateField?.touched ? 'is-valid' : '';
   }
 
 
-  ngOnInit(): void {
-  }
+
 
   /******************  Funciones *****************/
-
   register(registerForm: any) {
     Swal.fire({
       title: '¿Estás seguro de que deseas crear el usuario?',
@@ -84,4 +90,14 @@ export class RegisterComponent {
       }
     });
   }
+
+  constructor(private formBuilder: FormBuilder,
+    private userServices: UserServicesService,
+    private router: Router) {
+    this.modUser = new UserModel('', '', '', '', '', 'CLIENT');
+  }
+
+  ngOnInit(): void {
+  }
+
 }

@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 /*Angular material*/
 
 import { MatButtonModule } from '@angular/material/button';
@@ -26,7 +29,11 @@ import { EntidadUniformesComponent } from './component/entidad-uniformes/entidad
 import { EntidadGenerosComponent } from './component/entidad-generos/entidad-generos.component';
 import { EntidadDepartamentosComponent } from './component/entidad-departamentos/entidad-departamentos.component';
 import { EntidadProductosComponent } from './component/entidad-productos/entidad-productos.component';
-import { SubmenuComponent } from './component/submenu/submenu.component';  // Asegúrate de importar MatIconModule
+import { SubmenuComponent } from './component/submenu/submenu.component';
+import { EntidadUserArchivosComponent } from './component/entidad-user-archivos/entidad-user-archivos.component';
+import { SubmenuUserClientComponent } from './component/submenu-user-client/submenu-user-client.component';
+import { DocSemanalComponent } from './component/doc-semanal/doc-semanal.component';  // Asegúrate de importar MatIconModule
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -45,7 +52,10 @@ import { SubmenuComponent } from './component/submenu/submenu.component';  // As
     EntidadGenerosComponent,
     EntidadDepartamentosComponent,
     EntidadProductosComponent,
-    SubmenuComponent
+    SubmenuComponent,
+    EntidadUserArchivosComponent,
+    SubmenuUserClientComponent,
+    DocSemanalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +69,12 @@ import { SubmenuComponent } from './component/submenu/submenu.component';  // As
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatInputModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatNativeDateModule
     // Añade MatIconModule a la lista de módulos importados
   ],
   providers: [],
