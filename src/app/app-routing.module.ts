@@ -9,10 +9,11 @@ import { AdminGuard } from './guards/admin.guard';
 import { EntidadUserArchivosComponent } from './component/entidad-user-archivos/entidad-user-archivos.component';
 import { SubmenuUserClientComponent } from './component/submenu-user-client/submenu-user-client.component';
 import { DocSemanalComponent } from './component/doc-semanal/doc-semanal.component';
+import { HomeComponent } from './component/home/home.component';
 
 const routes: Routes = [
 
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'archivos', component: EntidadUserArchivosComponent, },

@@ -34,6 +34,7 @@ import { EntidadUserArchivosComponent } from './component/entidad-user-archivos/
 import { SubmenuUserClientComponent } from './component/submenu-user-client/submenu-user-client.component';
 import { DocSemanalComponent } from './component/doc-semanal/doc-semanal.component';  // Asegúrate de importar MatIconModule
 import { MatNativeDateModule } from '@angular/material/core';
+import { HomeComponent } from './component/home/home.component';
 
 
 
@@ -55,7 +56,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     SubmenuComponent,
     EntidadUserArchivosComponent,
     SubmenuUserClientComponent,
-    DocSemanalComponent
+    DocSemanalComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
