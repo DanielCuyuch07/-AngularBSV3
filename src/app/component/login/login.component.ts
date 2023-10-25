@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,  Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserModel } from 'src/app/models/user.model';
@@ -11,9 +11,9 @@ import { CustomValidators } from 'src/validators/CustomValidators';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-  
+
 export class LoginComponent implements OnInit {
-  modelUser: UserModel;
+  modelCustomer: UserModel;
   ocultarConfirmacionContrasenia: boolean = true;
   ocultarContrasenia: boolean = true;
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
 
   login(FormLogin: any) {
-    this.userRest.login(this.modelUser).subscribe({
+    this.userRest.login(this.modelCustomer).subscribe({
       next: (res: any) => {
         console.log('Response:', res);  // Verifica la respuesta del servidor
         alert(res.message);
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     private router: Router
 
   ) {
-    this.modelUser = new UserModel('', '', '', '', '', 'CLIENT')
+    this.modelCustomer = new UserModel('', '', '', '', '', 'CLIENT')
   }
 
   ngOnInit(): void {

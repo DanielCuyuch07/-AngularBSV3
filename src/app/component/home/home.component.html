@@ -1,11 +1,9 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <!-- Container wrapper -->
     <div class="container">
-        <!-- Navbar brand -->
         <a class="navbar-brand" href="#">
             <img src="../../../assets/img/logos/img-logo-SYNAPSE.png" alt="" class="w-100" style="max-width: 60px;">
-        </a> <!-- Search form -->
+        </a>
         <form class="input-group align-items-center" style="width: 300px">
             <input type="search" class="form-control" placeholder="Type query" aria-label="Search" />
             <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
@@ -20,6 +18,8 @@
             aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
+
+
         <!-- Left links -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
@@ -39,13 +39,10 @@
                 </li>
             </ul>
         </div>
-        <!-- Left links -->
     </div>
-
-    <!-- Container wrapper -->
 </nav>
-<!-- Final Navbar -->
 
+<!-- Home-->
 <main>
     <article>
         <section class="hero" id="home">
@@ -58,10 +55,10 @@
                     exportar la informacion por medio de documentos pdf y excel
                 </p>
                 <div class="btn-group">
-                    <a routerLink="/login" class="btn btn-primary text-white text-decoration-none" target="_blank">
+                    <a class="btn btn-primary text-white text-decoration-none" routerLink="/login" target="_blank">
                         <i class="bi bi-person-circle fs-5 fw-bold me-2"></i>Iniciar Sesion
                     </a>
-                    <a href="mailto:danielcuyuch55@gmail.com" class="btn btn-secondary text-white text-decoration-none"
+                    <a class="btn btn-secondary text-white text-decoration-none" href="mailto:danielcuyuch55@gmail.com"
                         routerLink="/register"><i class="bi bi-person-lines-fill fs-5 fw-bold me-2"></i>
                         Registrarse</a>
                 </div>

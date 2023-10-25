@@ -19,10 +19,10 @@ import { CustomValidators } from 'src/validators/CustomValidators';
 
 export class RegisterComponent {
   /*****  Variables **********/
-  modUser: UserModel;
+  modelCustomer: UserModel;
 
 
-  validatorsForm = this.formBuilder.group({
+  userForm = this.formBuilder.group({
     name: ['', Validators.required],
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -37,13 +37,11 @@ export class RegisterComponent {
   });
 
   isValidField(field: string): string {
-    const validateField = this.validatorsForm.get(field);
+    const validateField = this.userForm.get(field);
 
     return (!validateField?.valid && validateField?.touched)
       ? 'is-invalid' : validateField?.touched ? 'is-valid' : '';
   }
-
-
 
 
   register(registerForm: any) {
@@ -60,7 +58,7 @@ export class RegisterComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         // Si el usuario confirma, enviar la solicitud de registro
-        this.userServices.register(this.modUser).subscribe({
+        this.userServices.register(this.modelCustomer).subscribe({
           next: (res: any) => {
             Swal.fire({
               position: 'center',
@@ -88,7 +86,7 @@ export class RegisterComponent {
   constructor(private formBuilder: FormBuilder,
     private userServices: UserServicesService,
     private router: Router) {
-    this.modUser = new UserModel('', '', '', '', '', 'CLIENT');
+    this.modelCustomer = new UserModel('', '', '', '', '', 'CLIENT');
   }
 
   ngOnInit(): void {

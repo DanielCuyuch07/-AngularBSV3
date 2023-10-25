@@ -18,7 +18,7 @@ import { UserServicesService } from 'src/app/services/user-services.service';
 
 export class DocSemanalComponent implements OnInit {
   /******  Variables **********/
-  modUser: UserModel;
+  modelCurtomer: UserModel;
   selectedDate: Date;
 
 
@@ -47,9 +47,9 @@ export class DocSemanalComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-    private userServices: UserServicesService,
+    private serverClient: UserServicesService,
     private router: Router, private dateAdapter: DateAdapter<Date>) {
-    this.modUser = new UserModel('', '', '', '', '', 'CLIENT');
+    this.modelCurtomer = new UserModel('', '', '', '', '', 'CLIENT');
     this.selectedDate = new Date();
     this.dateAdapter.setLocale('es-Es');
   }

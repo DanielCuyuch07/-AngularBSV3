@@ -17,8 +17,8 @@ declare var bootstrap: any; // Declarar Bootstrap para que Angular lo reconozca
   
 export class EntidadUsuariosComponent implements OnInit {
 
-  modelUser: UserModel;
-  task: any[];
+  modelCustomer: UserModel;
+  userRecords: any[];
   userUpdate: any;
   save: any;
   isOffcanvasOpen = false;
@@ -27,10 +27,10 @@ export class EntidadUsuariosComponent implements OnInit {
 
 
   getUser() {
-    this.userRest.getUsuarios().subscribe({
+    this.serverClient.getUsuarios().subscribe({
       next: (res: any) => {
         console.log('Respuesta del servidor:', res);
-        this.task = res.users;
+        this.userRecords = res.users;
       },
       error: (err) => Swal.fire({
         icon: 'error',
@@ -55,7 +55,7 @@ export class EntidadUsuariosComponent implements OnInit {
       reverseButtons: true  // Invierte el orden de los botones
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userRest.deleteUser(id).subscribe({
+        this.serverClient.deleteUser(id).subscribe({
           next: (res: any) => {
             Swal.fire({
               position: 'center',
@@ -82,7 +82,7 @@ export class EntidadUsuariosComponent implements OnInit {
 
   updateUsers() {
     console.log('Datos del usuario a actualizar:', this.userUpdate);
-    this.userRest.updateUser(this.userUpdate._id, this.userUpdate).subscribe({
+    this.serverClient.updateUser(this.userUpdate._id, this.userUpdate).subscribe({
       next: (res: any) => {
         Swal.fire({
           position: 'center',
@@ -152,12 +152,11 @@ export class EntidadUsuariosComponent implements OnInit {
     pdfModal.show();
   }
 
-
   
 
-  constructor(private userRest: UserServicesService) {
-    this.modelUser = new UserModel('', '', '', '', '', 'CLIENT');
-    this.task = [];  // Definimos searchUser como un array
+  constructor(private serverClient: UserServicesService) {
+    this.modelCustomer = new UserModel('', '', '', '', '', 'CLIENT');
+    this.userRecords = [];  
     this.userUpdate = { name: '', email: '', username: '', password: '' }; // Inicializamos userUpdate
   }
 
