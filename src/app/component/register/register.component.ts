@@ -1,8 +1,8 @@
 /*Dependencia de lado de angular */
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormGroupDirective } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import Swal from 'sweetalert2';
 
 /*Dependencias creadas */
@@ -17,17 +17,11 @@ import { CustomValidators } from 'src/validators/CustomValidators';
   styleUrls: ['./register.component.css']
 })
 
-
 export class RegisterComponent {
-  /*****************************
- * 
- * ****  Variables *********
- * 
-******************************/
-modUser: UserModel;
+  /*****  Variables **********/
+  modUser: UserModel;
 
 
-/*---- Validacion de formularios -------*/
   validatorsForm = this.formBuilder.group({
     name: ['', Validators.required],
     username: ['', Validators.required],
@@ -52,7 +46,6 @@ modUser: UserModel;
 
 
 
-  /******************  Funciones *****************/
   register(registerForm: any) {
     Swal.fire({
       title: '¿Estás seguro de que deseas crear el usuario?',

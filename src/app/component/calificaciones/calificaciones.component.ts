@@ -1,10 +1,9 @@
-/*Dependencia de lado de angular */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomValidators } from 'src/validators/CustomValidators';
 
-/*Dependencias creadas */
+
+import { CustomValidators } from 'src/validators/CustomValidators';
 
 
 @Component({
@@ -12,8 +11,9 @@ import { CustomValidators } from 'src/validators/CustomValidators';
   templateUrl: './calificaciones.component.html',
   styleUrls: ['./calificaciones.component.css']
 })
-export class CalificacionesComponent implements OnInit {
 
+
+export class CalificacionesComponent implements OnInit {
   /*****************************
  * 
  * ****  Variables *********
@@ -21,7 +21,10 @@ export class CalificacionesComponent implements OnInit {
 ******************************/
 
 
-  /*---- Validacion de formularios -------*/
+
+
+
+
   validatorsForm = this.formBuilder.group({
     name: ['', Validators.required],
     dateTime: ['', Validators.required],
@@ -43,14 +46,11 @@ export class CalificacionesComponent implements OnInit {
 
   /******************  Funciones *****************/
 
-
   constructor(private formBuilder: FormBuilder, private router: Router) {
-
   }
+
 
   ngOnInit(): void {
-
   }
-
 
 }

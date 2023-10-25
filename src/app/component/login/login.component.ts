@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { UserModel } from 'src/app/models/user.model';
 import { UserServicesService } from 'src/app/services/user-services.service';
 import { CustomValidators } from 'src/validators/CustomValidators';
@@ -10,12 +11,12 @@ import { CustomValidators } from 'src/validators/CustomValidators';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+  
 export class LoginComponent implements OnInit {
   modelUser: UserModel;
-
-
   ocultarConfirmacionContrasenia: boolean = true;
   ocultarContrasenia: boolean = true;
+
 
   loginForm = this.formBuilder.group({
     username: ['', Validators.required],
@@ -29,14 +30,6 @@ export class LoginComponent implements OnInit {
     ]
   });
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private userRest: UserServicesService,
-    private router: Router
-
-  ) {
-    this.modelUser = new UserModel('', '', '', '', '', 'CLIENT')
-  }
 
   login(FormLogin: any) {
     this.userRest.login(this.modelUser).subscribe({
@@ -67,10 +60,15 @@ export class LoginComponent implements OnInit {
   }
 
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private userRest: UserServicesService,
+    private router: Router
 
+  ) {
+    this.modelUser = new UserModel('', '', '', '', '', 'CLIENT')
+  }
 
   ngOnInit(): void {
   }
-
-
 }

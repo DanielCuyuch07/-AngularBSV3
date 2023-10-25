@@ -1,37 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from 'src/app/models/user.model';
-import { UserServicesService } from 'src/app/services/user-services.service';
+
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+import { UserModel } from 'src/app/models/user.model';
+import { UserServicesService } from 'src/app/services/user-services.service';
+
 declare var bootstrap: any; // Declarar Bootstrap para que Angular lo reconozca
-
-
-
 
 @Component({
   selector: 'app-entidad-usuarios',
   templateUrl: './entidad-usuarios.component.html',
   styleUrls: ['./entidad-usuarios.component.css']
 })
+  
 export class EntidadUsuariosComponent implements OnInit {
+
   modelUser: UserModel;
   task: any[];
   userUpdate: any;
-
-
-
+  save: any;
   isOffcanvasOpen = false;
 
-
-
-  constructor(private userRest: UserServicesService) {
-    this.modelUser = new UserModel('', '', '', '', '', 'CLIENT');
-    this.task = [];  // Definimos searchUser como un array
-    this.userUpdate = { name: '', email: '', username: '', password: '' }; // Inicializamos userUpdate
-
-  }
 
 
 
@@ -39,7 +30,7 @@ export class EntidadUsuariosComponent implements OnInit {
     this.userRest.getUsuarios().subscribe({
       next: (res: any) => {
         console.log('Respuesta del servidor:', res);
-        this.task = res.users;  // Asignamos la lista de usuarios a searchUser
+        this.task = res.users;
       },
       error: (err) => Swal.fire({
         icon: 'error',
@@ -91,7 +82,6 @@ export class EntidadUsuariosComponent implements OnInit {
 
   updateUsers() {
     console.log('Datos del usuario a actualizar:', this.userUpdate);
-
     this.userRest.updateUser(this.userUpdate._id, this.userUpdate).subscribe({
       next: (res: any) => {
         Swal.fire({
@@ -114,7 +104,7 @@ export class EntidadUsuariosComponent implements OnInit {
   }
 
 
-  /*2*/
+
   public downloadPDF() {
     const DATA: any = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');
@@ -122,24 +112,57 @@ export class EntidadUsuariosComponent implements OnInit {
       background: 'white',
       scale: 3
     };
+
+    // Agregar elementos al DATA
+    const logo = new Image();
+    logo.src = 'ruta_al_logo.png'; // Reemplaza con la ruta correcta de tu logo
+    DATA.appendChild(logo);
+
+    const instructions = document.createElement('div');
+    instructions.innerHTML = '';
+    DATA.appendChild(instructions);
+
     html2canvas(DATA, options).then((canvas) => {
       const img = canvas.toDataURL('image/PNG');
-      // Add image Canvas to PDF
       const bufferX = 15;
       const bufferY = 15;
       const imgProps = (doc as any).getImageProperties(img);
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-      return doc;
-    }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+
+      // Ahora, guarda el PDF después de agregar la imagen
+      doc.save(`${new Date().toISOString()}_tutorial.pdf`);
     });
   }
 
+  openPDFModal() {
+    // Ruta del PDF que deseas mostrar en el modal
+    const pdfUrl = 'ruta_del_pdf.pdf'; // Reemplaza con la ruta correcta del PDF
 
+    // Obtén el iframe del modal
+    const pdfIframe = document.getElementById('pdfIframe') as HTMLIFrameElement;
+
+    // Establece la fuente del iframe para cargar el PDF
+    pdfIframe.src = pdfUrl;
+
+    // Abre el modal
+    const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+    pdfModal.show();
+  }
+
+
+  
+
+  constructor(private userRest: UserServicesService) {
+    this.modelUser = new UserModel('', '', '', '', '', 'CLIENT');
+    this.task = [];  // Definimos searchUser como un array
+    this.userUpdate = { name: '', email: '', username: '', password: '' }; // Inicializamos userUpdate
+  }
 
   ngOnInit(): void {
     this.getUser();
   }
+
 }
