@@ -13,7 +13,7 @@
                         <div class="form-group mt-5">
                             <i class="bi bi-circle-fill me-2  ms-1  small-icon text-success "></i>
                             <label class="form-label fs-6" for="form2Example1"><b>Username</b></label>
-                            <input [(ngModel)]="modelUser.username"
+                            <input [(ngModel)]="modelCustomer.username"
                                 [class.border-danger]="loginForm.controls.username.errors" formControlName="email"
                                 type="text" class="form-control" name="username" id="name" formControlName="username" />
                             <div *ngIf="loginForm.controls.username.getError('required')"
@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <input [type]="ocultarContrasenia ? 'password' : 'text'"
-                                            [(ngModel)]="modelUser.password"
+                                            [(ngModel)]="modelCustomer.password"
                                             [class.border-danger]="loginForm.controls.contrasenia.errors"
                                             formControlName="contrasenia" class="form-control" type="password" />
                                     </div>

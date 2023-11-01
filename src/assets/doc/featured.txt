@@ -1,0 +1,124 @@
+  // register(registerForm: any) {
+  //   Swal.fire({
+  //     title: '¿Estás seguro de que deseas crear el usuario?',
+  //     text: 'Esta acción no se puede deshacer.',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     cancelButtonText: 'Cancelar',
+  //     confirmButtonColor: '#28a745',  // Color verde claro
+  //     confirmButtonText: 'Sí, crear usuario',
+  //     cancelButtonColor: '#dc3545',  // Color rojo
+  //     reverseButtons: true  // Invierte el orden de los botones
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       // Si el usuario confirma, enviar la solicitud de registro
+  //       this.userServices.register(this.modelCustomer).subscribe({
+  //         next: (res: any) => {
+  //           Swal.fire({
+  //             position: 'center',
+  //             title: 'Usuario creado exitosamente',
+  //             icon: 'success',
+  //             showConfirmButton: false,
+  //             timer: 1000
+  //           });
+  //           this.router.navigateByUrl('/login');
+  //         },
+  //         error: (err) => {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops...',
+  //             text: err.message,
+  //             showConfirmButton: false,
+  //             timer: 1000
+  //           });
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
+
+  /*Login*/
+
+    login(FormLogin: any) {
+    this.userRest.login(this.modelCustomer).subscribe({
+      next: (res: any) => {
+        console.log('Response:', res);  // Verifica la respuesta del servidor
+        alert(res.message);
+
+        // Almacena el token y la identidad en localStorage
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('identity', JSON.stringify(res.alreadyUse));
+
+        // Redirecciona según el rol
+        if (res.alreadyUse.role === 'CLIENT') {
+          this.router.navigateByUrl('/subMenuClient');
+        } else if (res.alreadyUse.role === 'ADMIN') {
+          this.router.navigateByUrl('/usuarios');
+        } else {
+          // Otros roles o lógica de redirección
+        }
+
+      },
+      error: (err) => {
+        FormLogin.reset();
+        console.error('Error:', err);  // Verifica si hay algún error
+        return alert(err.error.message || err.error);
+      }
+    });
+  }
+
+  /*Delete*/
+
+  
+  userDelete(id: string) {
+    Swal.fire({
+      title: '¿Estás seguro de que deseas eliminar el usuario?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#28a745',  // Color verde claro
+      confirmButtonText: 'Sí, crear usuario',
+      cancelButtonColor: '#dc3545',  // Color rojo
+      reverseButtons: true  // Invierte el orden de los botones
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.serverClient.deleteUser(id).subscribe({
+          next: (res: any) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Usuario eliminado con exito',
+              showConfirmButton: false,
+              timer: 1000
+            })
+            this.getUser();
+          },
+          error: (err) => Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.error.message,
+            showConfirmButton: false,
+            timer: 1000
+          }),
+        });
+      }
+    })
+  }
+
+  
+  getUser() {
+    this.serverClient.getUsuarios().subscribe({
+      next: (res: any) => {
+        console.log('Respuesta del servidor:', res);
+        this.userRecords = res.users;
+      },
+      error: (err) => Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.error.message,
+        showConfirmButton: false,
+        timer: 1000
+      })
+    });
+  }

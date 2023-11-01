@@ -1,17 +1,13 @@
-/*Carpetas por Defecto de angular*/
-import { Component, OnInit, ViewChild, } from '@angular/core';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { FormGroupDirective } from '@angular/forms';
+import { Component, OnInit, } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DateAdapter } from '@angular/material/core';
 
 
 /*Sub carpetas*/
 import { UserModel } from 'src/app/models/user.model';
-import { CustomValidators } from 'src/validators/CustomValidators';
 import { UserServicesService } from 'src/app/services/user-services.service';
-import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-doc-semanal',
@@ -21,17 +17,10 @@ import Swal from 'sweetalert2';
 
 
 export class DocSemanalComponent implements OnInit {
-  /*****************************
-   * 
-   * ****  Variables *********
-   * 
-  ******************************/
-  modUser: UserModel;
+  /******  Variables **********/
+  modelCurtomer: UserModel;
   selectedDate: Date;
 
-
-
-  /*---- Validacion de formularios -------*/
 
   validatorsForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -41,6 +30,7 @@ export class DocSemanalComponent implements OnInit {
     exportDoc: ['', Validators.required]
   });
 
+
   isValidField(field: string): string {
     const validateField = this.validatorsForm.get(field);
 
@@ -48,18 +38,22 @@ export class DocSemanalComponent implements OnInit {
       ? 'is-invalid' : validateField?.touched ? 'is-valid' : '';
   }
 
-
   /******************  Funciones *****************/
 
+
+
+
+
+
+
   constructor(private formBuilder: FormBuilder,
-    private userServices: UserServicesService,
+    private serverClient: UserServicesService,
     private router: Router, private dateAdapter: DateAdapter<Date>) {
-    this.modUser = new UserModel('', '', '', '', '', 'CLIENT');
+    this.modelCurtomer = new UserModel('', '', '', '', '', 'CLIENT');
     this.selectedDate = new Date();
     this.dateAdapter.setLocale('es-Es');
   }
 
   ngOnInit(): void {
   }
-
 }

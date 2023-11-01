@@ -35,6 +35,7 @@ import { SubmenuUserClientComponent } from './component/submenu-user-client/subm
 import { DocSemanalComponent } from './component/doc-semanal/doc-semanal.component';  // Asegúrate de importar MatIconModule
 import { MatNativeDateModule } from '@angular/material/core';
 import { HomeComponent } from './component/home/home.component';
+import { CalificacionesComponent } from './component/calificaciones/calificaciones.component';
 
 
 
@@ -57,7 +58,8 @@ import { HomeComponent } from './component/home/home.component';
     EntidadUserArchivosComponent,
     SubmenuUserClientComponent,
     DocSemanalComponent,
-    HomeComponent
+    HomeComponent,
+    CalificacionesComponent
   ],
   imports: [
     BrowserModule,

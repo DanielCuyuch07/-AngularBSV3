@@ -9,7 +9,7 @@
                             <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">! Registrate !</p>
 
                             <!-- ------------------- Formulario --------------------->
-                            <form class="" [formGroup]="validatorsForm" (submit)="register(registerForm)"
+                            <form class="" [formGroup]="userForm" (submit)="register(registerForm)"
                                 #registerForm="ngForm">
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -19,10 +19,11 @@
                                         <label class="form-label fs-6" for="name"><b>Nombre Completo</b></label>
                                         <input class="form-control" formControlName="name" type="text" id="name"
                                             name="name" placeholder="Ingrese su nombre completo"
-                                            [class.border-danger]="validatorsForm.controls.name.errors"
-                                            [ngClass]="isValidField('name')" [(ngModel)]="modUser.name" required />
-                                        <div *ngIf="!validatorsForm.get('name')?.valid" class="invalid-feedback">
-                                            <div *ngIf="validatorsForm.get('name')?.hasError('required')">
+                                            [class.border-danger]="userForm.controls.name.errors"
+                                            [ngClass]="isValidField('name')" [(ngModel)]="modelCustomer.name"
+                                            required />
+                                        <div *ngIf="!userForm.get('name')?.valid" class="invalid-feedback">
+                                            <div *ngIf="userForm.get('name')?.hasError('required')">
                                                 Campo requerido
                                             </div>
                                         </div>
@@ -38,13 +39,13 @@
                                                 Email</b></label>
                                         <input class="form-control" type="email" id="form3Example3c"
                                             placeholder="Ingrese su correo electronico ejemplo@gmail.com"
-                                            [(ngModel)]="modUser.email" name="email" formControlName="email"
-                                            [class.border-danger]="validatorsForm.controls.email.errors"
+                                            [(ngModel)]="modelCustomer.email" name="email" formControlName="email"
+                                            [class.border-danger]="userForm.controls.email.errors"
                                             [ngClass]="isValidField('email')" required />
-                                        <div *ngIf="!validatorsForm.get('email')?.valid" class="invalid-feedback">
-                                            <div *ngIf="validatorsForm.get('email')?.hasError('required')">
+                                        <div *ngIf="!userForm.get('email')?.valid" class="invalid-feedback">
+                                            <div *ngIf="userForm.get('email')?.hasError('required')">
                                                 Campo requerido</div>
-                                            <div *ngIf="validatorsForm.get('email')?.hasError('email')">
+                                            <div *ngIf="userForm.get('email')?.hasError('email')">
                                                 Texto de formato email</div>
                                         </div>
                                     </div>
@@ -58,11 +59,11 @@
                                         <label class="form-label fs-6" for="form3Example4cd"><b>Username</b></label>
                                         <input class="form-control" type="text" id="form3Example4cd"
                                             placeholder="Ingrese su usuario" name="username" formControlName="username"
-                                            [(ngModel)]="modUser.username"
-                                            [class.border-danger]="validatorsForm.controls.username.errors"
+                                            [(ngModel)]="modelCustomer.username"
+                                            [class.border-danger]="userForm.controls.username.errors"
                                             [ngClass]="isValidField('username')" required />
-                                        <div *ngIf="!validatorsForm.get('username')?.valid" class="invalid-feedback">
-                                            <div *ngIf="validatorsForm.get('username')?.hasError('required')">
+                                        <div *ngIf="!userForm.get('username')?.valid" class="invalid-feedback">
+                                            <div *ngIf="userForm.get('username')?.hasError('required')">
                                                 Campo requerido
                                             </div>
                                         </div>
@@ -77,20 +78,20 @@
                                         <label class="form-label fs-6" for="form3Example4c"><b>Contraseña</b></label>
                                         <input class="form-control" type="password" id="name" type="password"
                                             id="form3Example4c" formControlName="contrasenia"
-                                            placeholder="Ingrese su contraseña" [(ngModel)]="modUser.password"
+                                            placeholder="Ingrese su contraseña" [(ngModel)]="modelCustomer.password"
                                             name="password"
-                                            [class.border-danger]="validatorsForm.controls.contrasenia.errors"
+                                            [class.border-danger]="userForm.controls.contrasenia.errors"
                                             required />
-                                        <div *ngIf="validatorsForm.controls.contrasenia.getError('onlyNumbers')"
+                                        <div *ngIf="userForm.controls.contrasenia.getError('onlyNumbers')"
                                             class="requisito text-danger">
                                             - Sólo se permiten caracteres numéricos
                                         </div>
-                                        <div *ngIf="validatorsForm.controls.contrasenia.getError('minlength') ||
-                                                    !validatorsForm.controls.contrasenia.value"
+                                        <div *ngIf="userForm.controls.contrasenia.getError('minlength') ||
+                                                    !userForm.controls.contrasenia.value"
                                             class="requisito text-danger">
                                             - Mínimo 8 caracteres
                                         </div>
-                                        <div *ngIf="validatorsForm.controls.contrasenia.getError('required')"
+                                        <div *ngIf="userForm.controls.contrasenia.getError('required')"
                                             class="requisito text-danger">
                                             - El campo es requerido
                                         </div>

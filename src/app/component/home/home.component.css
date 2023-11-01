@@ -120,6 +120,7 @@ button {
 \*-----------------------------------*/
 
 .hero {
+    background-image: url('../../../assets/img/img-main-logo1.jpg');
     /* background-image: url('../../../assets/img/main/img-main-logo1.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
