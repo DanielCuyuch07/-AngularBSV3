@@ -6,6 +6,7 @@ import html2canvas from 'html2canvas';
 
 import { UserModel } from 'src/app/models/user.model';
 import { UserServicesService } from 'src/app/services/user-services.service';
+import { functions } from 'src/app/utils/functions';
 
 declare var bootstrap: any; // Declarar Bootstrap para que Angular lo reconozca
 
@@ -14,7 +15,7 @@ declare var bootstrap: any; // Declarar Bootstrap para que Angular lo reconozca
   templateUrl: './entidad-usuarios.component.html',
   styleUrls: ['./entidad-usuarios.component.css']
 })
-  
+
 export class EntidadUsuariosComponent implements OnInit {
 
   modelCustomer: UserModel;
@@ -22,8 +23,6 @@ export class EntidadUsuariosComponent implements OnInit {
   userUpdate: any;
   save: any;
   isOffcanvasOpen = false;
-
-
 
 
   getUser() {
@@ -43,41 +42,18 @@ export class EntidadUsuariosComponent implements OnInit {
   }
 
   userDelete(id: string) {
-    Swal.fire({
-      title: '¿Estás seguro de que deseas eliminar el usuario?',
-      text: 'Esta acción no se puede deshacer.',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#28a745',  // Color verde claro
-      confirmButtonText: 'Sí, crear usuario',
-      cancelButtonColor: '#dc3545',  // Color rojo
-      reverseButtons: true  // Invierte el orden de los botones
-    }).then((result) => {
+    this.functions.showDeleteConfirmation().then((result) => {
       if (result.isConfirmed) {
         this.serverClient.deleteUser(id).subscribe({
           next: (res: any) => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Usuario eliminado con exito',
-              showConfirmButton: false,
-              timer: 1000
-            })
+            this.functions.showSuccessAlert('Usuario eliminado con éxito');
             this.getUser();
           },
-          error: (err) => Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.message,
-            showConfirmButton: false,
-            timer: 1000
-          }),
+          error: (err) => this.functions.showErrorrAlert(err.error.message),
         });
       }
-    })
+    });
   }
-
 
 
   updateUsers() {
@@ -152,11 +128,13 @@ export class EntidadUsuariosComponent implements OnInit {
     pdfModal.show();
   }
 
-  
 
-  constructor(private serverClient: UserServicesService) {
+
+  constructor(private serverClient: UserServicesService,
+    private functions: functions
+  ) {
     this.modelCustomer = new UserModel('', '', '', '', '', 'CLIENT');
-    this.userRecords = [];  
+    this.userRecords = [];
     this.userUpdate = { name: '', email: '', username: '', password: '' }; // Inicializamos userUpdate
   }
 

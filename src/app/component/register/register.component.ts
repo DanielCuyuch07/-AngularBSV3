@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { UserModel } from 'src/app/models/user.model';
 import { UserServicesService } from 'src/app/services/user-services.service';
 import { CustomValidators } from 'src/validators/CustomValidators';
+import { functions } from 'src/app/utils/functions';
 
 
 @Component({
@@ -45,46 +46,13 @@ export class RegisterComponent {
 
 
   register(registerForm: any) {
-    Swal.fire({
-      title: '¿Estás seguro de que deseas crear el usuario?',
-      text: 'Esta acción no se puede deshacer.',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#28a745',  // Color verde claro
-      confirmButtonText: 'Sí, crear usuario',
-      cancelButtonColor: '#dc3545',  // Color rojo
-      reverseButtons: true  // Invierte el orden de los botones
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Si el usuario confirma, enviar la solicitud de registro
-        this.userServices.register(this.modelCustomer).subscribe({
-          next: (res: any) => {
-            Swal.fire({
-              position: 'center',
-              title: 'Usuario creado exitosamente',
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 1000
-            });
-            this.router.navigateByUrl('/login');
-          },
-          error: (err) => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: err.message,
-              showConfirmButton: false,
-              timer: 1000
-            });
-          }
-        });
-      }
-    });
+    this.functions.registerUser(this.modelCustomer);
   }
+
 
   constructor(private formBuilder: FormBuilder,
     private userServices: UserServicesService,
+    private functions: functions,
     private router: Router) {
     this.modelCustomer = new UserModel('', '', '', '', '', 'CLIENT');
   }

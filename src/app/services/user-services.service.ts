@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -7,6 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserServicesService {
+  private userDeleted$ = new BehaviorSubject<boolean>(false);
 
 
 
@@ -39,6 +41,15 @@ export class UserServicesService {
   }
 
 
+  // Método para emitir eventos de eliminación
+  emitUserDeleted(deleted: boolean) {
+    this.userDeleted$.next(deleted);
+  }
+
+  // Método para suscribirse a eventos de eliminación
+  onUserDeleted(): Observable<boolean> {
+    return this.userDeleted$.asObservable();
+  }
 
   getToken() {
     let globalToken = localStorage.getItem('token');
